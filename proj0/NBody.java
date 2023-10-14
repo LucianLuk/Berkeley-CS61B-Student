@@ -102,4 +102,31 @@ public class NBody {
         StdDraw.pause(2000);
     }
 
+    private static void drawZoom(String imageToDraw) {
+        /** Enables double buffering.
+         * An animation technique where all drawing takes place on the offscreen canvas.
+         * Only when you call show() does your drawing get copied from the
+         * offscreen canvas to the onscreen canvas, where it is displayed
+         * in the standard drawing window. You don't have to understand this
+         * for CS61B. Just know that if you don't call this function, any attempt
+         * at smooth animation will look bad and flickery (remove it and see
+         * what happens!). */
+        StdDraw.enableDoubleBuffering();
+
+
+        double size = 100;
+        while (size < 500) {
+            StdDraw.picture(0, 0, imageToDraw, size, size);
+            StdDraw.show();
+            StdDraw.pause(10);
+            size += 1;
+        }
+
+        while (size > 1) {
+            StdDraw.picture(0, 0, imageToDraw, size, size);
+            StdDraw.show();
+            StdDraw.pause(1);
+            size -= 1;
+        }
+    }
 }
