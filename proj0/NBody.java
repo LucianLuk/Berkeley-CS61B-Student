@@ -1,7 +1,7 @@
 
 public class NBody {
 
-    public static int num;
+    private static int num;
 
     public static void main(String[] args) {
         double T = Double.parseDouble(args[0]);
@@ -60,14 +60,14 @@ public class NBody {
         }
     }
 
-    static double readRadius(String filename) {
+    public static double readRadius(String filename) {
         In in = new In(filename);
         num = in.readInt();
         double radius = in.readDouble();
         return radius;
     }
 
-    static Planet[] readPlanets(String filename) {
+    public static Planet[] readPlanets(String filename) {
         In in = new In(filename);
         int num = in.readInt();
         double radius = in.readDouble();
@@ -84,7 +84,7 @@ public class NBody {
         return planets;
     }
 
-    public static void drawThree(double Radius) {
+    private static void drawThree(double Radius) {
         /** Sets up the universe so it goes from
          * -100, -100 up to 100, 100 */
         String imageToDraw = "images/starfield.jpg";
@@ -102,31 +102,4 @@ public class NBody {
         StdDraw.pause(2000);
     }
 
-    public static void drawZoom(String imageToDraw) {
-        /** Enables double buffering.
-         * An animation technique where all drawing takes place on the offscreen canvas.
-         * Only when you call show() does your drawing get copied from the
-         * offscreen canvas to the onscreen canvas, where it is displayed
-         * in the standard drawing window. You don't have to understand this
-         * for CS61B. Just know that if you don't call this function, any attempt
-         * at smooth animation will look bad and flickery (remove it and see
-         * what happens!). */
-        StdDraw.enableDoubleBuffering();
-
-
-        double size = 100;
-        while (size < 500) {
-            StdDraw.picture(0, 0, imageToDraw, size, size);
-            StdDraw.show();
-            StdDraw.pause(10);
-            size += 1;
-        }
-
-        while (size > 1) {
-            StdDraw.picture(0, 0, imageToDraw, size, size);
-            StdDraw.show();
-            StdDraw.pause(1);
-            size -= 1;
-        }
-    }
 }
